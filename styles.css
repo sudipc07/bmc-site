@@ -335,6 +335,10 @@ ul {
     font-size: 1.5rem;
 }
 
+.text-lg {
+    font-size: 1.15rem;
+}
+
 .text-sm {
     font-size: 0.95rem;
 }
@@ -846,7 +850,7 @@ ul {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 1.35rem;
-    color: rgba(252, 250, 248, 0.8);
+    color: inherit; /* Allow it to pull from the section's .text-dark utility */
 }
 
 .benefit-item.highlight-text {
@@ -856,8 +860,20 @@ ul {
 .benefit-divider {
     width: 4px;
     height: 4px;
-    background-color: rgba(252, 250, 248, 0.2);
+    background-color: var(--border-light);
     border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .opportunity-benefits {
+        flex-direction: column;
+        gap: 1.25rem;
+        align-items: center;
+    }
+    
+    .benefit-divider {
+        display: none; /* Hide dividers when fully stacked on mobile */
+    }
 }
 
 /* Section 5: Identity */
