@@ -454,6 +454,16 @@ ul {
 
 .text-dark .eyebrow {
     color: var(--cta-primary);
+    background: rgba(230, 90, 32, 0.15);
+    border: 1px solid rgba(230, 90, 32, 0.2);
+}
+
+.section.hero .eyebrow {
+    color: #fff !important;
+    background: var(--cta-primary) !important;
+    border: none !important;
+    box-shadow: 0 4px 16px rgba(230, 90, 32, 0.4);
+    font-weight: 800;
 }
 
 /* Header */
@@ -563,6 +573,14 @@ ul {
     padding: var(--section-padding);
     position: relative;
     z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);            /* Subtle top glassy ridge */
+    box-shadow: inset 0 1px 0 rgba(230, 90, 32, 0.05);         /* Tiny warm glow at the top edge of every section */
+}
+
+/* Remove border from hero so it blends with header */
+.section.hero {
+    border-top: none;
+    box-shadow: none;
 }
 
 /* Hero Section */
