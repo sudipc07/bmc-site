@@ -1,52 +1,46 @@
 /* Better Managers Club - The Future of Management 
-   Premium, warm, modern, high-contrast, ultra-clean design
+   Premium, Modern Light Glassmorphism Design
 */
 
 :root {
-    /* Core Palette */
-    --bg-warm-white: #FCFAf8;
-    /* Very soft warm off-white */
-    --bg-light-gray: #F4F0EB;
-    /* Slightly darker warm tone */
-    --text-dark: #12100E;
-    /* Near-black / soft slate */
-    --text-body: #4A443E;
-    /* Warmer dark gray for readable text */
-    --bg-espresso: #1A1614;
-    /* Very dark espresso */
-    --bg-charcoal: #25201D;
-    /* Softer dark for contrast blocks */
-    --text-light: #FCFAf8;
-    /* Light text on dark */
+  /* Core Palette */
+  --bg-base: #FCFAf8;        /* Soft warm off-white canvas */
+  --text-dark: #12100E;      /* Near-black / soft slate */
+  --text-body: #4A443E;      /* Warmer dark gray for readable text */
+  --bg-espresso: #1A1614;    /* Very dark espresso */
+  --bg-charcoal: #25201D;    /* Softer dark for contrast blocks */
+  --text-light: #FCFAf8;     /* Light text on dark */
+  
+  /* Accents */
+  --cta-primary: #E65A20;    /* Vibrant warm orange */
+  --cta-hover: #D04F18;
+  --highlight: #E58D20;      /* Golden/amber */
+  --accent: #B82C00;         /* Deep orange-red */
+  
+  /* Glassmorphism & Borders */
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --border-light: rgba(18, 16, 14, 0.08);
+  --border-dark: rgba(252, 250, 248, 0.08);
 
-    /* Accents */
-    --cta-primary: #E65A20;
-    /* Vibrant warm orange */
-    --cta-hover: #D04F18;
-    --highlight: #E58D20;
-    /* Golden/amber */
-    --accent: #B82C00;
-    /* Deep orange-red */
-
-    --border-light: rgba(18, 16, 14, 0.06);
-    --border-dark: rgba(252, 250, 248, 0.08);
-
-    /* Typography */
-    --font-display: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
-
-    /* Layout */
-    --container-width: 1140px;
-    --container-padding: 2rem;
-    --section-padding: 8rem 0;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 24px;
-
-    /* Shadows - Extremely soft and premium */
-    --shadow-sm: 0 4px 12px rgba(18, 16, 14, 0.03);
-    --shadow-md: 0 12px 32px rgba(18, 16, 14, 0.05);
-    --shadow-lg: 0 24px 64px rgba(18, 16, 14, 0.07);
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Layout */
+  --container-width: 1140px;
+  --container-padding: 2rem;
+  --section-padding: 8rem 0;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  
+  /* Shadows - Extremely soft and premium */
+  --shadow-sm: 0 4px 12px rgba(18, 16, 14, 0.03);
+  --shadow-md: 0 12px 32px rgba(18, 16, 14, 0.06);
+  --shadow-lg: 0 24px 64px rgba(18, 16, 14, 0.08);
+  --shadow-glass: 0 8px 32px rgba(31, 38, 135, 0.04);
 }
 
 /* Base Reset */
@@ -56,14 +50,43 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-body);
     color: var(--text-body);
-    background-color: var(--bg-warm-white);
+    background-color: var(--bg-base);
     line-height: 1.6;
     font-size: 1.0625rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+/* Subtle noise texture overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    z-index: 0;
+}
+
+/* Ambient gradient orbs (Light Theme) */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 800px 600px at 10% -10%, rgba(229, 141, 32, 0.05), transparent),
+        radial-gradient(ellipse 900px 700px at 90% 40%, rgba(230, 90, 32, 0.03), transparent),
+        radial-gradient(ellipse 600px 500px at 40% 90%, rgba(184, 44, 0, 0.02), transparent);
+    z-index: 0;
 }
 
 h1,
@@ -77,8 +100,10 @@ h6,
     font-family: var(--font-display);
     color: var(--text-dark);
     line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 600;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
 }
 
 .bg-espresso h1,
@@ -94,6 +119,8 @@ a {
     text-decoration: none;
     color: inherit;
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    z-index: 2;
 }
 
 ul {
@@ -207,9 +234,7 @@ ul {
     display: inline-block;
 }
 
-.border-top {
-    border-top: 1px solid var(--border-light);
-}
+.border-top { border-top: 1px solid var(--border-light); position: relative; z-index: 2; }
 
 .flex-row {
     display: flex;
@@ -248,13 +273,7 @@ ul {
     padding-right: 0;
 }
 
-.bg-warm-white {
-    background-color: var(--bg-warm-white);
-}
-
-.bg-light-gray {
-    background-color: var(--bg-light-gray);
-}
+.bg-warm-white, .bg-light-gray { background-color: transparent !important; }
 
 .bg-espresso {
     background-color: var(--bg-espresso);
@@ -346,10 +365,26 @@ ul {
 
 .hero-title {
     font-size: clamp(3rem, 5vw, 4.5rem);
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 1.25rem;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title .text-gradient {
+    background: linear-gradient(135deg, var(--cta-primary) 0%, var(--highlight) 50%, var(--cta-primary) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
 }
 
 .hero-subtitle {
@@ -405,11 +440,11 @@ ul {
     top: 0;
     left: 0;
     right: 0;
-    padding: 0.2rem 0;
+    padding: 1rem 0;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
     border-bottom: 1px solid var(--border-light);
 }
 
@@ -417,6 +452,8 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .logo-link {
@@ -502,7 +539,26 @@ ul {
 .section {
     padding: var(--section-padding);
     position: relative;
-    overflow: hidden;
+    z-index: 2;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-glass), var(--shadow-sm);
+    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 350ms ease,
+                box-shadow 350ms ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(230, 90, 32, 0.3);
+    box-shadow: var(--shadow-glass), var(--shadow-md), 0 0 20px rgba(230, 90, 32, 0.05);
 }
 
 /* Hero Section */
